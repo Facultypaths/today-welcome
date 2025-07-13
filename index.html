@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <title>एक उम्मीद परिवार स्वागत</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(to bottom, #0b7200, #000080);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: .15em solid #fff;
+    }
+
+    .photos {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .photos img {
+      max-width: 150px;
+      max-height: 150px;
+      width: auto;
+      height: auto;
+      opacity: 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: opacity 1s ease;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.5rem; }
+      .photos img { max-width: 100px; max-height: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="line1"></h1>
+  <h1 id="line2"></h1>
+  <h1 id="line3"></h1>
+  <h1 id="line4"></h1>
+
+  <div class="photos">
+    <img id="photo1" src="images-removebg-preview.png" alt="दीक्षा दीदी">
+    <img id="photo2" src="01db2354-2599-4e6e-93a0-90960569d09f.jpg" alt="सीता यादव जी">
+    <img id="photo3" src="WhatsApp_Image_2025-03-28_at_00.19.23_7ab58edd-removebg-preview.png" alt="पवन चौहान जी">
+    <img id="photo4" src="215a034b-c84f-4be2-8090-ec3511baf16c.jpg" alt="आर्यन शर्मा">
+    <img id="photo5" src="WhatsApp_Image_2025-03-24_at_9.54.07_AM-removebg-preview.png" alt="पांचवा सदस्य">
+  </div>
+
+  <script>
+    const lines = [
+      '🙏 <span style="color:red">आप सभी</span> का इस माह की',
+      '<span style="color:red">मासिक बैठक</span> में',
+      'एक उम्मीद परिवार कानपुर ग्रामीण',
+      'हार्दिक स्वागत, अभिनंदन और वंदन करता है। 🙏'
+    ];
+
+    const ids = ['line1', 'line2', 'line3', 'line4'];
+
+    function typeLine(text, elementId, callback) {
+      let i = 0;
+      const speed = 70;
+      function typeChar() {
+        if (i < text.length) {
+          document.getElementById(elementId).innerHTML = text.substring(0, i+1);
+          i++;
+          setTimeout(typeChar, speed);
+        } else {
+          if (callback) callback();
+        }
+      }
+      typeChar();
+    }
+
+    function showPhoto(id) {
+      document.getElementById(id).style.opacity = 1;
+    }
+
+    function startTyping() {
+      typeLine(lines[0], ids[0], () => {
+        typeLine(lines[1], ids[1], () => {
+          typeLine(lines[2], ids[2], () => {
+            typeLine(lines[3], ids[3], () => {
+              setTimeout(() => showPhoto('photo1'), 500);
+              setTimeout(() => showPhoto('photo2'), 1500);
+              setTimeout(() => showPhoto('photo3'), 2500);
+              setTimeout(() => showPhoto('photo4'), 3500);
+              setTimeout(() => showPhoto('photo5'), 4500);
+            });
+          });
+        });
+      });
+    }
+
+    window.onload = startTyping;
+  </script>
+
+</body>
+</html>
